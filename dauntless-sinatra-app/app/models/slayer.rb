@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base[5.2]
+class User < ActiveRecord::Base
     has_secure_password
     has_many :behemoths
 end
