@@ -15,10 +15,27 @@ class SlayersController < ApplicationController
     end
 
     get '/signup' do
+        erb :signup
+    end
 
+    post '/slayers' do
+        if params[:name] != "" && params[:username] != "" && params[:password] != ""
+            @slayer = Slayer.create(params)
+            session[:slayer_id] = @slayer.id
+            redirect "/slayers/#{@slayer.id}"
+        else
+            redirect '/signup'
+        end
     end
 
     get '/slayers/:id' do
-        "Welcome Slayer!"
+        @slayer = Slayer.find_by(id: params[:id])
+        
+        erb :'/slayers/show'
+    end
+
+    get '/logout' do
+        session.clear
+        redirect '/'
     end
 end
