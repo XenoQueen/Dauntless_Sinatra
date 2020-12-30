@@ -13,4 +13,13 @@ class ApplicationController < Sinatra::Base
     erb :welcome
   end
 
+  helpers do
+    def logged_in?
+      !!current_slayer
+    end
+
+    def current_slayer
+      @current_slayer ||= Slayer.find_by(id: session[:slayer_id])
+    end
+  end
 end
