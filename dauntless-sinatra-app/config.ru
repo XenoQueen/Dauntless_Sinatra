@@ -5,5 +5,5 @@ if ActiveRecord::Migrator.needs_migration?
 end
 
 use SlayersController
-
+use BehemothEntriesController
 run ApplicationController
