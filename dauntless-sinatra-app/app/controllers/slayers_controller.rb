@@ -30,7 +30,6 @@ class SlayersController < ApplicationController
 
     get '/slayers/:id' do
         @slayer = Slayer.find_by(id: params[:id])
-        
         erb :'/slayers/show'
     end
 
