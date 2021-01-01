@@ -29,7 +29,7 @@ class BehemothsController < ApplicationController
     get '/behemoths/:id/edit' do
         set_behemoth
         if logged_in?
-            if authorized_to_edit(@behemoth)
+            if authorized_to_edit?(@behemoth)
                 erb :'/behemoths/edit'
             else
                 redirect "slayers/#{current_slayer.id}"
@@ -42,7 +42,7 @@ class BehemothsController < ApplicationController
     patch '/behemoths/:id' do
         set_behemoth
         if logged_in?
-            if @behemoth.slayer == current_slayer
+            if authorized_to_edit?(@behemoth)
                 @behemoth.update(name: params[:name])
                 redirect "/behemoths/#{@behemoth.id}"
             else
@@ -50,6 +50,16 @@ class BehemothsController < ApplicationController
             end
         else
             redirect '/'
+        end
+    end
+
+    delete '/behemoths/:id' do
+        set_behemoth
+        if authorized_to_edit?(@behemoth)
+            @behemoth.destroy
+            redirect '/behemoths'
+        else
+            redirect '/behemoths'
         end
     end
 
