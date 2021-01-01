@@ -29,7 +29,7 @@ class BehemothsController < ApplicationController
     get '/behemoths/:id/edit' do
         set_behemoth
         if logged_in?
-            if @behemoth.slayer == current_slayer
+            if authorized_to_edit(@behemoth)
                 erb :'/behemoths/edit'
             else
                 redirect "slayers/#{current_slayer.id}"
