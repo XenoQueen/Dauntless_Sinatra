@@ -7,8 +7,8 @@ class BehemothsController < ApplicationController
         if !logged_in?
             redirect '/'
         end
-        if params[:element] != ""
-            @behemoth = Behemoth.create(element: params[:element], slayer_id: current_slayer.id)
+        if params[:name] != ""
+            @behemoth = Behemoth.create(name: params[:name], slayer_id: current_slayer.id)
             redirect "/behemoths/#{@behemoth.id}"
         else
             redirect '/behemoths/new'
@@ -16,11 +16,40 @@ class BehemothsController < ApplicationController
     end
 
     get '/behemoths/:id' do
-        @behemoth = Behemoth.find(params[:id])
+        set_behemoth
         erb :'/behemoths/show'
     end
 
     get '/behemoths/:id/edit' do
-        erb :'/behemoths/edit'
+        set_behemoth
+        if logged_in?
+            if @behemoth.slayer == current_slayer
+                erb :'/behemoths/edit'
+            else
+                redirect "slayers/#{current_slayer.id}"
+            end
+        else
+            redirect '/'
+        end
+    end
+
+    patch '/behemoths/:id' do
+        set_behemoth
+        if logged_in?
+            if @behemoth.slayer == current_slayer
+                @behemoth.update(name: params[:name])
+                redirect "/behemoths/#{@behemoth.id}"
+            else
+                redirect "slayers/#{current_slayer.id}"
+            end
+        else
+            redirect '/'
+        end
+    end
+
+    private
+
+    def set_behemoth
+        @behemoth = Behemoth.find(params[:id])
     end
 end
