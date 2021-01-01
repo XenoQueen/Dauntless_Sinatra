@@ -26,5 +26,9 @@ class ApplicationController < Sinatra::Base
     def current_slayer
       @current_slayer ||= Slayer.find_by(id: session[:slayer_id])
     end
+
+    def authorized_to_edit?(behemoth)
+      behemoth.slayer == current_slayer
+    end
   end
 end
