@@ -1,6 +1,6 @@
 class BehemothsController < ApplicationController
     get '/behemoths/new' do
-        erb :'/behemoth_entries/new'
+        erb :'/behemoths/new'
     end
 
     post '/behemoths' do
@@ -18,5 +18,9 @@ class BehemothsController < ApplicationController
     get '/behemoths/:id' do
         @behemoth = Behemoth.find(params[:id])
         erb :'/behemoths/show'
+    end
+
+    get '/behemoths/:id/edit' do
+        erb :'/behemoths/edit'
     end
 end
