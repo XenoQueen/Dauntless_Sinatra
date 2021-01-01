@@ -4,6 +4,10 @@ SHOW PAGE FOR A BEHEMOTH ENTRY
 
 <% if authorized_to_edit?(@behemoth) %>
     <a href="/behemoths/<%= @behemoth.id %>/edit">Edit Behemoth</a>
-
-Delete link
+    <br><br>
+    <form class="" action="/behemoths/<%= @behemoth.id %>" 
+    method="post">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" name="" value="Delete this Behemoth">
+    </form>
 <% end %>
