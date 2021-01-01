@@ -1,1 +1,8 @@
-INDEX PAGE FOR BEHEMOTH ENTRIES
+ALL BEHEMOTH ENTRIES
+<% @behemoths.each do|behemoth| %>
+    <h4><a href="/behemoths/<%= behemoth.id %>"
+    <%= behemoth.created_at %></a></h4>
+    <p><%= behemoth.name %></p>
+    <p>By <%= behemoth.slayer.name %></p>
+    <br><br>
+<% end %>
