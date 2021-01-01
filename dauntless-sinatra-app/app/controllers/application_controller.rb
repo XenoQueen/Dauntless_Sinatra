@@ -28,7 +28,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def authorized_to_edit?(behemoth)
-      behemoth.slayer == current_slayer
+      @behemoth.slayer == current_slayer
     end
   end
 end
