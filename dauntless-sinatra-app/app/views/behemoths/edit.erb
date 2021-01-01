@@ -1,1 +1,10 @@
-EDIT FORM GOES HERE
+EDIT PAGE FOR BEHEMOTH ENTRY
+
+<form class="" action="/behemoths/<%= @behemoth.id %>" method="post">
+    <input type="hidden" name="_method" value="patch">
+    <label for="name">Name: </label>
+    <input name="name" type="text" value="<%= @behemoth.name %>">
+    <label for="element">Element: </label>
+    <input name="element" type="text" value="">
+    <input name="" type="submit" value="Edit">
+</form>
