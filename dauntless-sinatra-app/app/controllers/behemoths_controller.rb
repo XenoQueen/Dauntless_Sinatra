@@ -42,7 +42,7 @@ class BehemothsController < ApplicationController
     patch '/behemoths/:id' do
         set_behemoth
         if logged_in?
-            if authorized_to_edit?(@behemoth)
+            if authorized_to_edit?(@behemoth) && params[:name] != ""
                 @behemoth.update(name: params[:name])
                 redirect "/behemoths/#{@behemoth.id}"
             else
