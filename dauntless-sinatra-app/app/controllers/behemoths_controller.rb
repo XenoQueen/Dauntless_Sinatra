@@ -1,4 +1,10 @@
 class BehemothsController < ApplicationController
+
+    get '/behemoths' do
+        @behemoths = Behemoth.all
+        erb :'behemoths/index'
+    end
+
     get '/behemoths/new' do
         erb :'/behemoths/new'
     end
