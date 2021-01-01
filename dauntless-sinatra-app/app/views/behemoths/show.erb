@@ -2,7 +2,8 @@ SHOW PAGE FOR A BEHEMOTH ENTRY
 
 <p><%= @behemoth.name %></p>
 
-Edit link
-<a href="/behemoths/<%= @behemoth.id %>/edit">Edit Behemoth</a>
+<% if authorized_to_edit?(@behemoth) %>
+    <a href="/behemoths/<%= @behemoth.id %>/edit">Edit Behemoth</a>
 
 Delete link
+<% end %>
