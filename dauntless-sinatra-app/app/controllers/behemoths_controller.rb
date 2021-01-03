@@ -14,7 +14,7 @@ class BehemothsController < ApplicationController
             redirect '/'
         end
         if params[:name] != ""
-            @behemoth = Behemoth.create(name: params[:name], slayer_id: current_slayer.id)
+            @behemoth = Behemoth.create(name: params[:name], element: params[:element], slayer_id: current_slayer.id)
             redirect "/behemoths/#{@behemoth.id}"
         else
             redirect '/behemoths/new'
