@@ -1,6 +1,7 @@
 SHOW PAGE FOR A BEHEMOTH ENTRY
 
 <p><%= @behemoth.name %></p>
+<p><%= @behemoth.element%></p>
 
 <% if authorized_to_edit?(@behemoth) %>
     <a href="/behemoths/<%= @behemoth.id %>/edit">Edit Behemoth</a>
