@@ -5,7 +5,11 @@ SHOW PAGE FOR A BEHEMOTH ENTRY
 <p><%= @behemoth.element%></p>
 
 <% if authorized_to_edit?(@behemoth) %>
-    <a href="/behemoths/<%= @behemoth.id %>/edit">Edit Behemoth</a>
+    <form class="" action="/behemoths/<%= @behemoth.id %>" 
+    method="post">
+        <input type="hidden" name="_method" value="EDIT">
+        <input type="submit" name="" value="Edit this Behemoth">
+    </form>
     <br><br>
     <form class="" action="/behemoths/<%= @behemoth.id %>" 
     method="post">
