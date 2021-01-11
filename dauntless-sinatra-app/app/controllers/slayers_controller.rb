@@ -10,7 +10,7 @@ class SlayersController < ApplicationController
             puts session
             redirect "slayers/#{@slayer.id}"
         else
-
+            redirect '/login'
         end
     end
 
